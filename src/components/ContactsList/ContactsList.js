@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { getContacts, getFilter } from 'redux/selectors';
 import { ContactsUl, ContactsItem,ContactsText, ContactsSpan, ContactsBtn, ContactsDiv } from './ContactsList.styled';
 const ContactsList = ({ contacts, onDelete }) => {
   return (

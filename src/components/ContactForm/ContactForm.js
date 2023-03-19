@@ -9,16 +9,9 @@ import {
   FormInput,
 } from './ContactForm.styled';
 
-// const useLocalStorage = (key, defaultValue) => {
-//   const [state, setState] = useState(() => {
-//     return JSON.parse(window.localStorage.getItem) ?? 'defaultValue';
-//   });
-
-//   useEffect(() => {
-//      window.localStorage.setItem(key, JSON.stringify(state));
-//    }, [key, state]);
-//    return [state, setState];
-//  };
+import { useSelector, useDispatch } from 'react-redux';
+import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/contactsSlice';
 
 const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
@@ -38,6 +31,9 @@ const ContactForm = ({ onSubmit }) => {
         return;
     }
   };
+
+  const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -91,4 +87,7 @@ ContactForm.propTypes = {
   handleSubmit: PropTypes.func,
 };
 
+
+
 export default ContactForm;
+
