@@ -21,17 +21,17 @@ import {contactsReducer  } from './contactsSlice';
 const persistConfig = {
   key: 'contacts',
   storage,
-  whitelist: ['contacts'],
+
 };
 
 const rootReducer = combineReducers({
   contacts: contactsReducer ,
   filter: filterReducer,
 });
-const persistRootReducer = persistReducer(persistConfig, rootReducer);
+const persistRootReducer = persistReducer(persistConfig, contactsReducer);
 
 export const store = configureStore({
-  reducer: persistRootReducer,
+  reducer: {contacts:persistRootReducer,filter: filterReducer},
   middleware:(getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
